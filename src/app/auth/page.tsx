@@ -19,19 +19,20 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="w-screen h-screen flex flex-col items-center justify-center gap-10">
-            <div className="flex items-center gap-2">
-                <RiQuillPenFill size={62.5} />
-                <div className="text-5xl">scribe</div>
+        <>
+            <div className="w-screen h-screen flex flex-col items-center justify-center gap-10 bg-slate-100">
+                <div className="flex items-center gap-2">
+                    <RiQuillPenFill size={62.5} />
+                    <div className="text-5xl">scribe</div>
+                </div>
+                <div className="flex flex-col gap-4">
+                    <Button className="flex gap-4" onClick={handleSignIn}>
+                        <FaGithub size={20}></FaGithub>
+                        <div>Sign in with GitHub</div>
+                    </Button>
+                    <div className="text-sm">No GitHub account? Too bad.</div>
+                </div>
             </div>
-            <div className="flex flex-col gap-4">
-                <Button className="flex gap-4" onClick={handleSignIn}>
-                    <FaGithub size={20}></FaGithub>
-                    <div>Sign in with GitHub</div>
-                </Button>
-                <div className="text-sm">No GitHub account? Too bad.</div>
-            </div>
-            
-        </div>
+        </>
     );
 }

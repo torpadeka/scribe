@@ -8,16 +8,17 @@ export default async function HomePage() {
     // const result = await db.select().from(UsersTable);
     // console.log(result);
 
+    // Session Check
     const session = await auth();
 
-    if (!session) {
+    if (session === null) {
         redirect("/auth");
     }
 
     return (
         <>
             <Navbar></Navbar>
-            <div className="w-screen h-screen flex pt-20 bg-slate-100">
+            <div className="w-screen h-screen flex pt-20 bg-slate-100 dark:bg-slate-900">
                 <div className="w-full h-full flex flex-col items-center justify-center text-center">
                     <div>Main content goes here</div>
                     {session ? <div>Logged In</div> : <div>Not Logged In</div>}
@@ -44,17 +45,6 @@ export default async function HomePage() {
                             </form>
                         </div>
                     )}
-
-                    {/* <div>
-                        <form
-                            action={async (formData) => {
-                                "use server";
-                                await signIn();
-                            }}
-                        >
-                            <Button type="submit">Login</Button>
-                        </form>
-                    </div> */}
                 </div>
             </div>
         </>

@@ -1,6 +1,7 @@
 import { auth, signIn, signOut } from "@/auth";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
 
 export default async function HomePage() {
     // TEST SELECT QUERY
@@ -9,7 +10,9 @@ export default async function HomePage() {
 
     const session = await auth();
 
-    
+    if (!session) {
+        redirect("/auth");
+    }
 
     return (
         <>

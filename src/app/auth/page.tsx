@@ -1,4 +1,4 @@
-"use client"; // Add this directive at the top of the file
+"use client";
 
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";

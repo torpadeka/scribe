@@ -1,0 +1,3 @@
+When deploying for real, remember:
+- AUTH_URL needs to be replaced with the deployment URL instead of localhost
+- GitHub App Auth's callback needs to be replaced with the deployment URL as well

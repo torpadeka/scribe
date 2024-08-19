@@ -9,14 +9,3 @@ export const usersTable = pgTable("users", {
     image: text("image").notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
 });
-
-export const sessionTable = pgTable("session", {
-    id: text("id").primaryKey(),
-    userId: text("user_id")
-        .notNull()
-        .references(() => usersTable.id),
-    expiresAt: timestamp("expires_at", {
-        withTimezone: true,
-        mode: "date",
-    }).notNull(),
-});

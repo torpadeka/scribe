@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react";
 import { RiQuillPenFill } from "react-icons/ri";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import GitHubAuthButton from "@/components/GitHubAuthButton";
+import GitHubAuthButton from "@/components/layout/GitHubAuthButton";
 
 export default async function LoginPage() {
     // Session Check

@@ -1,5 +1,5 @@
 import { auth, signIn, signOut } from "@/auth";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
 
@@ -18,7 +18,7 @@ export default async function HomePage() {
     return (
         <>
             <Navbar></Navbar>
-            <div className="w-screen h-screen flex pt-20 bg-slate-100 dark:bg-slate-900">
+            <div className="w-screen h-screen flex bg-slate-100 dark:bg-slate-900">
                 <div className="w-full h-full flex flex-col items-center justify-center text-center">
                     <div>Main content goes here</div>
                     {session ? <div>Logged In</div> : <div>Not Logged In</div>}

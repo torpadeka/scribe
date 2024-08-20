@@ -3,8 +3,7 @@ import DarkModeButton from "./DarkModeButton";
 import { auth } from "@/auth";
 import { db, usersTable } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
-import UserAvatar from "./UserAvatar";
-import { redirect } from "next/navigation";
+import NavbarUserAvatar from "./NavbarUserAvatar";
 
 const Navbar = async () => {
     const session = await auth();
@@ -31,7 +30,7 @@ const Navbar = async () => {
                 </div>
                 <div className="flex items-center justify-center gap-4">
                     <DarkModeButton></DarkModeButton>
-                    <UserAvatar imageUrl={imageUrl}></UserAvatar>
+                    <NavbarUserAvatar imageUrl={imageUrl}></NavbarUserAvatar>
                 </div>
             </div>
         </>

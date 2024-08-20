@@ -1,24 +1,20 @@
 import { RiQuillPenFill } from "react-icons/ri";
 import DarkModeButton from "./DarkModeButton";
 import { auth } from "@/auth";
-import { db, usersTable } from "@/drizzle/schema";
-import { eq } from "drizzle-orm";
 import NavbarUserAvatar from "./NavbarUserAvatar";
+import { getUserByEmail } from "@/actions";
 
 const Navbar = async () => {
     const session = await auth();
 
     const sessionEmail = session?.user?.email;
 
-    let imageUrl = "";
+    let image = "";
 
     if (sessionEmail) {
-        const user = await db
-            .select()
-            .from(usersTable)
-            .where(eq(usersTable.email, sessionEmail));
+        const user = getUserByEmail(sessionEmail);
 
-        imageUrl = user[0].image;
+        image = (await user).image
     }
 
     return (
@@ -30,7 +26,7 @@ const Navbar = async () => {
                 </div>
                 <div className="flex items-center justify-center gap-4">
                     <DarkModeButton></DarkModeButton>
-                    <NavbarUserAvatar imageUrl={imageUrl}></NavbarUserAvatar>
+                    <NavbarUserAvatar image={image}></NavbarUserAvatar>
                 </div>
             </div>
         </>

@@ -5,7 +5,7 @@ import { IoMdPerson } from "react-icons/io";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
 
-const ProfileUserAvatar = ({ imageUrl }: { imageUrl: string }) => {
+const ProfileUserAvatar = ({ image }: { image: string }) => {
     const [mounted, setMounted] = useState(false);
 
     // On mount
@@ -17,7 +17,7 @@ const ProfileUserAvatar = ({ imageUrl }: { imageUrl: string }) => {
         <>
             {mounted && (
                 <Avatar className="w-48 h-48">
-                    <AvatarImage src={imageUrl} />
+                    <AvatarImage src={image} />
                     <AvatarFallback>
                         <IoMdPerson size={25} />
                     </AvatarFallback>

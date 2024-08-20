@@ -1,9 +1,8 @@
-import { signIn } from "next-auth/react";
-
 import { RiQuillPenFill } from "react-icons/ri";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import GitHubAuthButton from "@/components/layout/GitHubAuthButton";
+import GoogleAuthButton from "@/components/layout/GoogleAuthButton";
 
 export default async function LoginPage() {
     // Session Check
@@ -21,6 +20,7 @@ export default async function LoginPage() {
                     <div className="text-5xl">scribe</div>
                 </div>
                 <div className="flex flex-col gap-4">
+                    <GoogleAuthButton></GoogleAuthButton>
                     <GitHubAuthButton></GitHubAuthButton>
                     <div className="text-sm">No GitHub account? Too bad.</div>
                 </div>

@@ -17,7 +17,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 
-const NavbarUserAvatar = ({ imageUrl }: { imageUrl: string }) => {
+const NavbarUserAvatar = ({ image }: { image: string }) => {
     const [mounted, setMounted] = useState(false);
 
     // On mount
@@ -29,7 +29,7 @@ const NavbarUserAvatar = ({ imageUrl }: { imageUrl: string }) => {
 
     const handleProfileClick = () => {
         console.log("Profile Clicked!");
-        router.push("/profile"); // Client-side navigation
+        router.push("/dashboard/profile"); // Client-side navigation
     };
 
     const logout = async () => {
@@ -42,7 +42,7 @@ const NavbarUserAvatar = ({ imageUrl }: { imageUrl: string }) => {
                 <DropdownMenuTrigger>
                     {mounted && (
                         <Avatar className="w-12 h-12">
-                            <AvatarImage src={imageUrl} />
+                            <AvatarImage src={image} />
                             <AvatarFallback>
                             <IoMdPerson size={25} />
                             </AvatarFallback>
@@ -56,15 +56,15 @@ const NavbarUserAvatar = ({ imageUrl }: { imageUrl: string }) => {
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
-                        className="flex items-center justify-start gap-1 cursor-pointer"
+                        className="flex items-center justify-start gap-4 cursor-pointer"
                         onClick={handleProfileClick}
                     >
                         <IoMdPerson size={20} />
                         <div>Profile</div>
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                        className="flex items-center justify-start gap-1 cursor-pointer text-red-600"
-                        onClick={logout}
+                        className="flex items-center justify-start gap-4 cursor-pointer text-red-600"
+                        onClick={logout}    
                     >
                         <IoMdLogOut size={20} />
                         <div>Logout</div>

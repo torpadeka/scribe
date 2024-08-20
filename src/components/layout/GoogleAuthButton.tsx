@@ -1,13 +1,13 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { FaGithub } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import { Button } from "@/components/ui/button"; // Adjust the import based on your file structure
 
-export default function GitHubAuthButton() {
+export default function GoogleAuthButton() {
     const handleSignIn = async () => {
         try {
-            await signIn("github", {
+            await signIn("google", {
                 callbackUrl: "/dashboard",
             });
         } catch (error) {
@@ -19,8 +19,8 @@ export default function GitHubAuthButton() {
         <>
             <div className="flex flex-col gap-4">
                 <Button className="flex gap-4" onClick={handleSignIn}>
-                    <FaGithub size={20} />
-                    <div>Sign in with GitHub</div>
+                    <FaGoogle size={20} />
+                    <div>Sign in with Google</div>
                 </Button>
             </div>
         </>

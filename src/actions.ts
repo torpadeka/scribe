@@ -1,3 +1,5 @@
+"use server";
+
 import { db, usersTable } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
 
@@ -12,7 +14,7 @@ export async function getUserByEmail(email: string) {
     return user;
 }
 
-export async function updateUserImage(email: string, image: string) {
+export async function updateUserImage(image: string, email: string) {
     await db
         .update(usersTable)
         .set({ image: image })

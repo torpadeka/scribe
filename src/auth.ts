@@ -31,7 +31,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     .select()
                     .from(usersTable)
                     .where(eq(usersTable.email, user.email as string));
-                console.log("Existing User:", existingUser);
+                
                 if (existingUser.length === 0) {
                     // Insert new user if not found
                     await db.insert(usersTable).values({

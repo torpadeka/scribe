@@ -12,7 +12,7 @@ export default function ErrorPage() {
                     <RiQuillPenFill size={62.5} />
                     <div className="text-5xl">scribe</div>
                 </div>
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center gap-4">
                     <MdError size={40} />
                     <div className="text-xl">An Error Has Occured</div>
                 </div>

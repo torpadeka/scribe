@@ -13,7 +13,6 @@ export default function ErrorExitButton() {
 
     return (
         <Button
-            variant="outline"
             onClick={redirectDashboard}
             className="flex items-center justify-center gap-2"
         >

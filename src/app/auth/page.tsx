@@ -22,7 +22,7 @@ export default async function LoginPage() {
                 <div className="flex flex-col gap-4">
                     <GoogleAuthButton></GoogleAuthButton>
                     <GitHubAuthButton></GitHubAuthButton>
-                    <div className="text-sm">No GitHub account? Too bad.</div>
+                    <div className="text-sm">Have none of these accounts? Too bad.</div>
                 </div>
             </div>
         </>

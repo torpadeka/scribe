@@ -53,7 +53,10 @@ export default async function ProfilePage() {
                         </Breadcrumb>
                     </div>
                     <div className="w-full h-72 flex items-center justify-center gap-6">
-                        <ProfileUserAvatar image={image}></ProfileUserAvatar>
+                        <ProfileUserAvatar
+                            image={image}
+                            email={sessionEmail!}
+                        ></ProfileUserAvatar>
                         <div className="text-3xl font-bold">
                             <span>{username}</span>
                         </div>

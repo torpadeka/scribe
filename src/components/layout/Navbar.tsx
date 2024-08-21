@@ -12,9 +12,9 @@ export default async function Navbar() {
     let image = "";
 
     if (sessionEmail) {
-        const user = getUserByEmail(sessionEmail);
+        const user = await getUserByEmail(sessionEmail);
 
-        image = (await user).image;
+        image = user.image;
     }
 
     return (

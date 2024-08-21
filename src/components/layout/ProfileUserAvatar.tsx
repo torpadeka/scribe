@@ -5,7 +5,7 @@ import { IoMdPerson } from "react-icons/io";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
 
-const ProfileUserAvatar = ({ image }: { image: string }) => {
+export default function ProfileUserAvatar({ image }: { image: string }) {
     const [mounted, setMounted] = useState(false);
 
     // On mount
@@ -26,6 +26,4 @@ const ProfileUserAvatar = ({ image }: { image: string }) => {
             {!mounted && <Skeleton className="w-48 h-48 rounded-full" />}
         </>
     );
-};
-
-export default ProfileUserAvatar;
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { FaGoogle } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { Button } from "@/components/ui/button"; // Adjust the import based on your file structure
 
 export default function GoogleAuthButton() {
@@ -17,12 +17,10 @@ export default function GoogleAuthButton() {
 
     return (
         <>
-            <div className="flex flex-col gap-4">
-                <Button className="flex gap-4" onClick={handleSignIn}>
-                    <FaGoogle size={20} />
-                    <div>Sign in with Google</div>
-                </Button>
-            </div>
+            <Button className="flex gap-2 items-center justify-center" onClick={handleSignIn}>
+                <FcGoogle size={25} />
+                <div>Sign in with Google</div>
+            </Button>
         </>
     );
 }

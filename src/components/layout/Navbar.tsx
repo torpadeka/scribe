@@ -4,7 +4,7 @@ import { auth } from "@/auth";
 import NavbarUserAvatar from "./NavbarUserAvatar";
 import { getUserByEmail } from "@/actions";
 
-const Navbar = async () => {
+export default async function Navbar() {
     const session = await auth();
 
     const sessionEmail = session?.user?.email;
@@ -14,7 +14,7 @@ const Navbar = async () => {
     if (sessionEmail) {
         const user = getUserByEmail(sessionEmail);
 
-        image = (await user).image
+        image = (await user).image;
     }
 
     return (
@@ -31,6 +31,4 @@ const Navbar = async () => {
             </div>
         </>
     );
-};
-
-export default Navbar;
+}

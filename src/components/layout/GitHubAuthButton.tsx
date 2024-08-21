@@ -17,12 +17,10 @@ export default function GitHubAuthButton() {
 
     return (
         <>
-            <div className="flex flex-col gap-4">
-                <Button className="flex gap-4" onClick={handleSignIn}>
-                    <FaGithub size={20} />
-                    <div>Sign in with GitHub</div>
-                </Button>
-            </div>
+            <Button className="flex gap-2 items-center justify-center" onClick={handleSignIn}>
+                <FaGithub size={25} />
+                <div>Sign in with GitHub</div>
+            </Button>
         </>
     );
 }

@@ -17,7 +17,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 
-const NavbarUserAvatar = ({ image }: { image: string }) => {
+export default function NavbarUserAvatar({ image }: { image: string }) {
     const [mounted, setMounted] = useState(false);
 
     // On mount
@@ -25,11 +25,10 @@ const NavbarUserAvatar = ({ image }: { image: string }) => {
         setMounted(true);
     }, []);
 
-    const router = useRouter(); // Initialize useRouter
+    const router = useRouter();
 
-    const handleProfileClick = () => {
-        console.log("Profile Clicked!");
-        router.push("/dashboard/profile"); // Client-side navigation
+    const redirectProfile = () => {
+        router.push("/dashboard/profile");
     };
 
     const logout = async () => {
@@ -44,7 +43,7 @@ const NavbarUserAvatar = ({ image }: { image: string }) => {
                         <Avatar className="w-12 h-12">
                             <AvatarImage src={image} />
                             <AvatarFallback>
-                            <IoMdPerson size={25} />
+                                <IoMdPerson size={25} />
                             </AvatarFallback>
                         </Avatar>
                     )}
@@ -57,14 +56,14 @@ const NavbarUserAvatar = ({ image }: { image: string }) => {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
                         className="flex items-center justify-start gap-4 cursor-pointer"
-                        onClick={handleProfileClick}
+                        onClick={redirectProfile}
                     >
                         <IoMdPerson size={20} />
                         <div>Profile</div>
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         className="flex items-center justify-start gap-4 cursor-pointer text-red-600"
-                        onClick={logout}    
+                        onClick={logout}
                     >
                         <IoMdLogOut size={20} />
                         <div>Logout</div>
@@ -73,6 +72,4 @@ const NavbarUserAvatar = ({ image }: { image: string }) => {
             </DropdownMenu>
         </>
     );
-};
-
-export default NavbarUserAvatar;
+}

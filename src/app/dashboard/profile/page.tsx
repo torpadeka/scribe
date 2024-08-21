@@ -1,5 +1,6 @@
 import { getUserByEmail } from "@/actions";
 import { auth } from "@/auth";
+import BreadcrumbRedirectLink from "@/components/layout/BreadcrumbRedirectLink";
 import ProfileUserAvatar from "@/components/layout/ProfileUserAvatar";
 import {
     Breadcrumb,
@@ -40,9 +41,9 @@ export default async function ProfilePage() {
                         <Breadcrumb>
                             <BreadcrumbList className="text-base">
                                 <BreadcrumbItem>
-                                    <BreadcrumbLink href="/dashboard">
+                                    <BreadcrumbRedirectLink route="/dashboard">
                                         Dashboard
-                                    </BreadcrumbLink>
+                                    </BreadcrumbRedirectLink>
                                 </BreadcrumbItem>
                                 <BreadcrumbSeparator></BreadcrumbSeparator>
                                 <BreadcrumbItem>

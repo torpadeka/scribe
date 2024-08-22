@@ -25,7 +25,8 @@ export default function ProfileUserAvatar({
     // On mount
     useEffect(() => {
         setMounted(true);
-    }, []);setFile
+    }, []);
+    setFile;
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputFile = e.target.files![0];
@@ -61,10 +62,16 @@ export default function ProfileUserAvatar({
             return;
         }
 
-        const { url: imagePath } = await put(`profileImages/${email}`, file, {
-            access: "public",
-            token: process.env.BLOB_READ_WRITE_TOKEN,
-        });
+        const fileExtension = file.name.split(".").pop();
+
+        const { url: imagePath } = await put(
+            `profileImages/${email}.${fileExtension}`,
+            file,
+            {
+                access: "public",
+                token: process.env.NEXT_PUBLIC_BLOB_READ_WRITE_TOKEN,
+            }
+        );
 
         // Update the user image URL in the database using a server action
         await updateUserImage(imagePath, email);

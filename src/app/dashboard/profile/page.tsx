@@ -1,4 +1,5 @@
 import { getUserByEmail } from "@/actions";
+import { baseUrl } from "@/app/baseUrl";
 import { auth } from "@/auth";
 import BreadcrumbRedirectLink from "@/components/layout/BreadcrumbRedirectLink";
 import ProfileUserAvatar from "@/components/layout/ProfileUserAvatar";
@@ -26,7 +27,14 @@ export default async function ProfilePage() {
     let username = "";
 
     if (sessionEmail) {
-        const user = await getUserByEmail(sessionEmail);
+        const encodedEmail = encodeURIComponent(sessionEmail);
+        const response = await fetch(`${baseUrl}/api/user/${encodedEmail}`);
+
+        if (!response.ok) {
+            console.log("User Not Found");
+        }
+
+        const user = await response.json();
 
         image = user.image;
         username = user.username;

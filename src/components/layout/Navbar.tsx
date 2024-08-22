@@ -3,6 +3,7 @@ import DarkModeButton from "./DarkModeButton";
 import { auth } from "@/auth";
 import NavbarUserAvatar from "./NavbarUserAvatar";
 import { getUserByEmail } from "@/actions";
+import { baseUrl } from "@/app/baseUrl";
 
 export default async function Navbar() {
     const session = await auth();
@@ -12,7 +13,14 @@ export default async function Navbar() {
     let image = "";
 
     if (sessionEmail) {
-        const user = await getUserByEmail(sessionEmail);
+        const encodedEmail = encodeURIComponent(sessionEmail);
+        const response = await fetch(`${baseUrl}/api/user/${encodedEmail}`);
+
+        if (!response.ok) {
+            console.log("User Not Found");
+        }
+
+        const user = await response.json();
 
         image = user.image;
     }

@@ -31,7 +31,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     .select()
                     .from(usersTable)
                     .where(eq(usersTable.email, user.email as string));
-                
+
                 if (existingUser.length === 0) {
                     // Insert new user if not found
                     await db.insert(usersTable).values({
@@ -53,6 +53,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     pages: {
         signIn: "/auth",
+        signOut: "/logout",
         error: "/error",
     },
 });

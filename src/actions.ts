@@ -13,10 +13,3 @@ export async function getUserByEmail(email: string) {
 
     return user;
 }
-
-export async function updateUserImage(image: string, email: string) {
-    await db
-        .update(usersTable)
-        .set({ image: image })
-        .where(eq(usersTable.email, email));
-}

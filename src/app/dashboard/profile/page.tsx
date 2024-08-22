@@ -27,15 +27,7 @@ export default async function ProfilePage() {
     let username = "";
 
     if (sessionEmail) {
-        const encodedEmail = encodeURIComponent(sessionEmail);
-        const response = await fetch(`${baseUrl}/api/user/${encodedEmail}`);
-
-        if (!response.ok) {
-            console.log("User Not Found");
-        }
-
-        const user = await response.json();
-
+        const user = await getUserByEmail(sessionEmail);
         image = user.image;
         username = user.username;
     }

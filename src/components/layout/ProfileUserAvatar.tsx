@@ -5,7 +5,6 @@ import { IoMdPerson } from "react-icons/io";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
-import { updateUserImage } from "@/actions";
 import { Button } from "../ui/button";
 import { put } from "@vercel/blob";
 
@@ -20,13 +19,12 @@ export default function ProfileUserAvatar({
     const [file, setFile] = useState<File | null>(null);
     const [error, setError] = useState<String>("");
 
-    // UNSAFE, TOKEN IS EXPOSED TO CLIENT, NEED TO EXPORT LOGIC TO SERVER-SIDE SOMEHOW
+    // UNSAFE, TOKEN IS EXPOSED TO CLIENT, NEED TO EXPORT LOGIC TO SERVER-SIDE SOMEHOW (APIs)
     console.log(process.env.NEXT_PUBLIC_BLOB_READ_WRITE_TOKEN);
     // On mount
     useEffect(() => {
         setMounted(true);
     }, []);
-    setFile;
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputFile = e.target.files![0];
@@ -74,7 +72,8 @@ export default function ProfileUserAvatar({
         );
 
         // Update the user image URL in the database using a server action
-        await updateUserImage(imagePath, email);
+
+        // pls make API for this, and also the file putting process
     };
 
     return (

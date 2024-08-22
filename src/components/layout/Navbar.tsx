@@ -11,17 +11,9 @@ export default async function Navbar() {
     const sessionEmail = session?.user?.email;
 
     let image = "";
-
+    
     if (sessionEmail) {
-        const encodedEmail = encodeURIComponent(sessionEmail);
-        const response = await fetch(`${baseUrl}/api/user/${encodedEmail}`);
-
-        if (!response.ok) {
-            console.log("User Not Found");
-        }
-
-        const user = await response.json();
-
+        const user = await getUserByEmail(sessionEmail);
         image = user.image;
     }
 

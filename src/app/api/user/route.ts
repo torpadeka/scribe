@@ -13,6 +13,13 @@ export const GET = auth(async function GET(req) {
     if (req.auth) {
         const email = req.nextUrl.searchParams.get("email");
 
+        if(!email) {
+            return NextResponse.json(
+                { message: "Email params not supplied" },
+                { status: 404 }
+            );
+        }
+
         try {
             const queryResult = await db
                 .select()

@@ -6,7 +6,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { put } from "@vercel/blob";
 
 export default function ProfileUserAvatar({
     image,
@@ -19,9 +18,6 @@ export default function ProfileUserAvatar({
     const [file, setFile] = useState<File | null>(null);
     const [error, setError] = useState<String>("");
 
-    // UNSAFE, TOKEN IS EXPOSED TO CLIENT, NEED TO EXPORT LOGIC TO SERVER-SIDE SOMEHOW (APIs)
-    console.log(process.env.NEXT_PUBLIC_BLOB_READ_WRITE_TOKEN);
-    // On mount
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -60,20 +56,17 @@ export default function ProfileUserAvatar({
             return;
         }
 
-        const fileExtension = file.name.split(".").pop();
+        const formData = new FormData();
+        formData.append("email", email);
+        formData.append("file", file);
 
-        const { url: imagePath } = await put(
-            `profileImages/${email}.${fileExtension}`,
-            file,
-            {
-                access: "public",
-                token: process.env.NEXT_PUBLIC_BLOB_READ_WRITE_TOKEN,
-            }
-        );
+        const response = await fetch("/api/user/updateImage", {
+            method: "POST",
+            credentials: "include",
+            body: formData,
+        });
 
-        // Update the user image URL in the database using a server action
-
-        // pls make API for this, and also the file putting process
+        console.log("Update User Image Response: ", response);
     };
 
     return (
@@ -81,15 +74,20 @@ export default function ProfileUserAvatar({
             {mounted && (
                 <>
                     <Avatar className="w-36 h-36">
-                        <Input
-                            type="file"
-                            accept=".jpg,.jpeg,.png,.gif"
-                            className="w-36 h-36 fixed flex items-center justify-center rounded-full opacity-0 hover:opacity-30 bg-gray-700 cursor-pointer z-50"
-                            onChange={handleFileChange}
-                        ></Input>
-                        <AvatarImage className="z-0" src={image} />
+                        <div className="w-36 h-36 fixed flex items-center justify-center rounded-full opacity-0 hover:opacity-30 bg-gray-950 z-10">
+                            <Input
+                                type="file"
+                                accept=".jpg,.jpeg,.png,.gif"
+                                className="w-36 h-36 fixed rounded-full opacity-0"
+                                onChange={handleFileChange}
+                            ></Input>
+                            <div className="w-full h-full flex items-center justify-center opacity-0 hover:opacity-100 rounded-full">
+                                <IoMdPerson size={75}></IoMdPerson>
+                            </div>
+                        </div>
+                        <AvatarImage src={image} />
                         <AvatarFallback>
-                            <IoMdPerson size={25} />
+                            <IoMdPerson size={75} />
                         </AvatarFallback>
                     </Avatar>
                     <Button onClick={handleFileSubmit}>Update</Button>

@@ -1,9 +1,9 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { IoMdPerson } from "react-icons/io";
+import { IoIosCamera, IoMdPerson } from "react-icons/io";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 
@@ -14,9 +14,11 @@ export default function ProfileUserAvatar({
     image: string;
     email: string;
 }) {
-    const [mounted, setMounted] = useState(false);
+    const [mounted, setMounted] = useState<boolean>(false);
     const [file, setFile] = useState<File | null>(null);
     const [error, setError] = useState<String>("");
+
+    const fileInput = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         setMounted(true);
@@ -69,20 +71,30 @@ export default function ProfileUserAvatar({
         console.log("Update User Image Response: ", response);
     };
 
+    const openFileInput = () => {
+        if (fileInput.current) {
+            fileInput.current.click();
+        }
+    };
+
     return (
         <>
             {mounted && (
                 <>
                     <Avatar className="w-36 h-36">
-                        <div className="w-36 h-36 fixed flex items-center justify-center rounded-full opacity-0 hover:opacity-30 bg-gray-950 z-10">
-                            <Input
-                                type="file"
-                                accept=".jpg,.jpeg,.png,.gif"
-                                className="w-36 h-36 fixed rounded-full opacity-0"
-                                onChange={handleFileChange}
-                            ></Input>
-                            <div className="w-full h-full flex items-center justify-center opacity-0 hover:opacity-100 rounded-full">
-                                <IoMdPerson size={75}></IoMdPerson>
+                        <div
+                            className="w-36 h-36 fixed flex items-center justify-center rounded-full opacity-0 hover:opacity-50 bg-gray-950 z-10 cursor-pointer transition-all duration-500"
+                            onClick={openFileInput}
+                        >
+                            <div className="flex items-center justify-center">
+                                <Input
+                                    type="file"
+                                    accept=".jpg,.jpeg,.png,.gif"
+                                    className="hidden"
+                                    onChange={handleFileChange}
+                                    ref={fileInput}
+                                ></Input>
+                                <IoIosCamera color="white" size={75} />
                             </div>
                         </div>
                         <AvatarImage src={image} />
@@ -90,8 +102,8 @@ export default function ProfileUserAvatar({
                             <IoMdPerson size={75} />
                         </AvatarFallback>
                     </Avatar>
-                    <Button onClick={handleFileSubmit}>Update</Button>
                     <div>{error}</div>
+                    <Button onClick={handleFileSubmit}>Update</Button>
                 </>
             )}
             {!mounted && <Skeleton className="w-48 h-48 rounded-full" />}

@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { IoIosCamera, IoMdPerson } from "react-icons/io";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -17,6 +19,13 @@ export default function ProfileUserAvatar({
     const [mounted, setMounted] = useState<boolean>(false);
     const [file, setFile] = useState<File | null>(null);
     const [error, setError] = useState<String>("");
+
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const refreshData = () => {
+        router.replace(pathname);
+    };
 
     const fileInput = useRef<HTMLInputElement>(null);
 
@@ -69,6 +78,11 @@ export default function ProfileUserAvatar({
         });
 
         console.log("Update User Image Response: ", response);
+        if (response.ok) {
+            refreshData();
+        } else {
+            router.push("/error");
+        }
     };
 
     const openFileInput = () => {

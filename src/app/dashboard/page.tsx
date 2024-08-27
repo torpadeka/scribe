@@ -1,4 +1,4 @@
-import { auth, signIn, signOut } from "@/auth";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
 import {
@@ -12,11 +12,6 @@ import {
 import DashboardContent from "@/components/layout/DashboardContent";
 
 export default async function DashboardPage() {
-    // TEST SELECT QUERY
-    // const result = await db.select().from(UsersTable);
-    // console.log(result);
-
-    // Session Check
     const session = await auth();
 
     if (session === null) {

@@ -1,5 +1,4 @@
 import { getUserByEmail } from "@/actions";
-import { baseUrl } from "@/app/baseUrl";
 import { auth } from "@/auth";
 import BreadcrumbRedirectLink from "@/components/layout/BreadcrumbRedirectLink";
 import ProfileUserAvatar from "@/components/layout/ProfileUserAvatar";

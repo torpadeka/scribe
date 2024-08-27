@@ -1,4 +1,3 @@
-// src/app/dashboard/layout.tsx
 import Navbar from "@/components/layout/Navbar";
 import { ReactNode } from "react";
 

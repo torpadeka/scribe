@@ -16,7 +16,7 @@ export default function ErrorExitButton() {
             onClick={redirectDashboard}
             className="flex items-center justify-center gap-2"
         >
-            <div>Get me out of here</div>
+            <div>Back to Dashboard</div>
             <FaChevronRight></FaChevronRight>
         </Button>
     );
